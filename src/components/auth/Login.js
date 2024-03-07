@@ -13,21 +13,25 @@ export const Login = ({ setLoggedInUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    getUserByEmail(email).then((user) => {
-      if (!isEmptyObject(user)) {
-        localStorage.setItem(
-          "rare_user",
-          JSON.stringify({
-            ...user,
-          })
-        )
+    if (!username || !email) {
+      window.alert("Please complete the required fields")
+    } else {
+      getUserByEmail(email).then((user) => {
+        if (!isEmptyObject(user)) {
+          localStorage.setItem(
+            "rare_user",
+            JSON.stringify({
+              ...user,
+            })
+          )
 
-        setLoggedInUser(user)
-        navigate("/")
-      } else {
-        window.alert("Invalid username or email")
-      }
-    })
+          setLoggedInUser(user)
+          navigate("/")
+        } else {
+          window.alert("Invalid username or email")
+        }
+      })
+    }
   }
 
   return (
