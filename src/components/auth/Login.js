@@ -1,16 +1,33 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, FormGroup, Input } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
+import { getUserByEmail } from "../../managers/userManager"
+import { isEmptyObject } from "../../helper"
 
 export const Login = ({ setLoggedInUser }) => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    //TODO: handle submit functionality
+    getUserByEmail(email.trim().toLowerCase()).then((user) => {
+      if (!isEmptyObject(user)) {
+        localStorage.setItem(
+          "rare_user",
+          JSON.stringify({
+            ...user,
+          })
+        )
+
+        setLoggedInUser(user)
+        navigate("/")
+      } else {
+        window.alert("Invalid username or email")
+      }
+    })
   }
 
   return (
@@ -23,7 +40,7 @@ export const Login = ({ setLoggedInUser }) => {
             className="login__input"
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             placeholder="Username"
           />
         </FormGroup>
@@ -34,7 +51,7 @@ export const Login = ({ setLoggedInUser }) => {
             className="login__input"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             placeholder="Email"
           />
         </FormGroup>
