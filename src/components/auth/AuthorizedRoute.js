@@ -1,11 +1,12 @@
 import { Navigate, useLocation } from "react-router-dom"
 
-export const AuthorizedRoute = ({ children, loggedInUser, isPublicOnly = false }) => {
+export const AuthorizedRoute = ({ children, isPublicOnly = false }) => {
   const location = useLocation()
+  const localUser = localStorage.getItem("rare_user")
 
   if (!isPublicOnly) {
     // if the route requires authorization
-    if (!!loggedInUser) {
+    if (!!localUser) {
       // and the user is logged in, allow entry
       return children
     } else {
@@ -14,7 +15,7 @@ export const AuthorizedRoute = ({ children, loggedInUser, isPublicOnly = false }
     }
   } else {
     // if the route does not require authorization
-    if (!loggedInUser) {
+    if (!localUser) {
       // and the user is not logged in, allow entry
       return children
     } else {

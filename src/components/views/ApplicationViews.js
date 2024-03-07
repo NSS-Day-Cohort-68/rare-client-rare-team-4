@@ -3,6 +3,7 @@ import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
 import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
+import { NavBar } from "../nav/NavBar"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -25,7 +26,8 @@ export const ApplicationViews = () => {
       <Route
         path="/"
         element={
-          <AuthorizedRoute loggedInUser={loggedInUser}>
+          <AuthorizedRoute>
+            <NavBar setLoggedInUser={setLoggedInUser} />
             <Outlet />
           </AuthorizedRoute>
         }>
@@ -36,7 +38,7 @@ export const ApplicationViews = () => {
       <Route
         path="/login"
         element={
-          <AuthorizedRoute loggedInUser={loggedInUser} isPublicOnly={true}>
+          <AuthorizedRoute isPublicOnly={true}>
             <Login setLoggedInUser={setLoggedInUser} />
           </AuthorizedRoute>
         }
@@ -44,7 +46,7 @@ export const ApplicationViews = () => {
       <Route
         path="/register"
         element={
-          <AuthorizedRoute loggedInUser={loggedInUser} isPublicOnly={true}>
+          <AuthorizedRoute isPublicOnly={true}>
             <Register setLoggedInUser={setLoggedInUser} />
           </AuthorizedRoute>
         }
