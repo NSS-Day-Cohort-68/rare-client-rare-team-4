@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { Outlet, Route, Routes } from "react-router-dom"
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
 import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     // check if user is logged in
@@ -28,8 +29,7 @@ export const ApplicationViews = () => {
             <Outlet />
           </AuthorizedRoute>
         }>
-        <Route index element={<>[insert home page here]</>} />
-
+        <Route index element={<>[home page]</>} /> {/* home page will go here */}
         {/*//* add more application routes here */}
       </Route>
 
@@ -49,6 +49,8 @@ export const ApplicationViews = () => {
           </AuthorizedRoute>
         }
       />
+
+      <Route path="*" element={<Navigate to={"/"} state={{ from: location }} replace />} />
     </Routes>
   )
 }
