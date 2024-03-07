@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button, FormGroup, Input, Label } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
-import { createUser, getUserById, userExists } from "../../managers/userManager"
+import { createUser, getUserByEmail, getUserById } from "../../managers/userManager"
+import { isEmptyObject } from "../../helper"
 
 export const Register = ({ setLoggedInUser }) => {
   const [firstName, setFirstName] = useState("")
@@ -23,31 +24,31 @@ export const Register = ({ setLoggedInUser }) => {
     e.preventDefault()
     trimInput()
 
-    const existingToken = await userExists({
-      username,
-      email,
-    })
     if (!firstName || !lastName || !username || !email) {
       window.alert("Please complete the required fields")
-    } else if (existingToken.valid) {
-      window.alert("Account already in use")
     } else {
-      createUser({
-        first_name: firstName,
-        last_name: lastName,
-        username,
-        email,
-      }).then((newUserToken) => {
-        getUserById(newUserToken.token).then((newUser) => {
-          localStorage.setItem(
-            "rare_user",
-            JSON.stringify({
-              ...newUser,
+      getUserByEmail(email).then((user) => {
+        if (!isEmptyObject(user)) {
+          window.alert("Account already in use")
+        } else {
+          createUser({
+            first_name: firstName,
+            last_name: lastName,
+            username,
+            email,
+          }).then((newUserToken) => {
+            getUserById(newUserToken.token).then((newUser) => {
+              localStorage.setItem(
+                "rare_user",
+                JSON.stringify({
+                  ...newUser,
+                })
+              )
+              setLoggedInUser(newUser)
+              navigate("/")
             })
-          )
-          setLoggedInUser(newUser)
-          navigate("/")
-        })
+          })
+        }
       })
     }
   }

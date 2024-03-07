@@ -11,7 +11,7 @@ export const ApplicationViews = () => {
     const user = localStorage.getItem("rare_user")
     if (!!user) {
       // user exists in local storage
-      setLoggedInUser(user)
+      setLoggedInUser(JSON.parse(user))
     } else {
       // user does not exist in local storage
       setLoggedInUser(null)

@@ -13,7 +13,7 @@ export const Login = ({ setLoggedInUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    getUserByEmail(email.trim().toLowerCase()).then((user) => {
+    getUserByEmail(email).then((user) => {
       if (!isEmptyObject(user)) {
         localStorage.setItem(
           "rare_user",
