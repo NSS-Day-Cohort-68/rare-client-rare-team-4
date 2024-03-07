@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes } from "react-router-dom"
 import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
+import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -20,8 +21,34 @@ export const ApplicationViews = () => {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
-      <Route path="/register" element={<Register setLoggedInUser={setLoggedInUser} />} />
+      <Route
+        path="/"
+        element={
+          <AuthorizedRoute loggedInUser={loggedInUser}>
+            <Outlet />
+          </AuthorizedRoute>
+        }>
+        <Route index element={<>[insert home page here]</>} />
+
+        {/*//* add more application routes here */}
+      </Route>
+
+      <Route
+        path="/login"
+        element={
+          <AuthorizedRoute loggedInUser={loggedInUser} isPublicOnly={true}>
+            <Login setLoggedInUser={setLoggedInUser} />
+          </AuthorizedRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <AuthorizedRoute loggedInUser={loggedInUser} isPublicOnly={true}>
+            <Register setLoggedInUser={setLoggedInUser} />
+          </AuthorizedRoute>
+        }
+      />
     </Routes>
   )
 }
