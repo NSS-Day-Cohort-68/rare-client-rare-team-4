@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
 
 export const Login = ({ setLoggedInUser }) => {
-  const [username, setUsername] = useState("") // set default username here
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,14 +28,14 @@ export const Login = ({ setLoggedInUser }) => {
           />
         </FormGroup>
 
-        <FormGroup id="login__password">
+        <FormGroup id="login__email">
           <Input
-            id="login__password-input"
+            id="login__email-input"
             className="login__input"
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
           />
         </FormGroup>
 

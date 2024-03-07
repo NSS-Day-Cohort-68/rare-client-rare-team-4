@@ -20,12 +20,7 @@
 
 .register__content-container {
   display: flex;
-}
-.register__content-a,
-.register__content-b {
-  display: flex;
   flex-direction: column;
-  margin: 0px 50px;
 }
 
 .login__title {
