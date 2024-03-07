@@ -13,5 +13,5 @@ export const createUser = async (user) => {
 }
 
 export const userExists = async (user) => {
-  return await fetch(`${apiUrl}/login`, fetchOptions("GET", user)).then((res) => res.json())
+  return await fetch(`${apiUrl}/login`, fetchOptions("POST", user)).then((res) => res.json())
 }

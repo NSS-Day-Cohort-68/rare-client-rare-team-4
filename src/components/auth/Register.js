@@ -1,15 +1,16 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, FormGroup, Input, Label } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
-import { userExists } from "../../managers/userManager"
+import { createUser, getUserById, userExists } from "../../managers/userManager"
 
 export const Register = ({ setLoggedInUser }) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
+  const navigate = useNavigate()
 
   const trimInput = () => {
     setFirstName(firstName.trim())
@@ -18,20 +19,36 @@ export const Register = ({ setLoggedInUser }) => {
     setEmail(email.trim())
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     trimInput()
+
+    const existingToken = await userExists({
+      username,
+      email,
+    })
     if (!firstName || !lastName || !username || !email) {
       window.alert("Please complete the required fields")
-    } else if (
-      userExists({
-        username,
-        email,
-      })
-    ) {
+    } else if (existingToken.valid) {
       window.alert("Account already in use")
     } else {
-      //!
+      createUser({
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        email,
+      }).then((newUserToken) => {
+        getUserById(newUserToken.token).then((newUser) => {
+          localStorage.setItem(
+            "rare_user",
+            JSON.stringify({
+              ...newUser,
+            })
+          )
+          setLoggedInUser(newUser)
+          navigate("/")
+        })
+      })
     }
   }
 
@@ -73,7 +90,7 @@ export const Register = ({ setLoggedInUser }) => {
               type="text"
               placeholder="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value.replace(/\s/g, "").trim())}
+              onChange={(e) => setUsername(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             />
           </FormGroup>
 
@@ -85,7 +102,7 @@ export const Register = ({ setLoggedInUser }) => {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value.replace(/\s/g, "").trim())}
+              onChange={(e) => setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             />
           </FormGroup>
         </div>
