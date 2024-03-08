@@ -1,19 +1,28 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CategoryList from '../lists/CategoryList';
-import CategoryView from './CategoryView';
-import CategoryForm from '../forms/CategoryForm';
+import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import { Login } from "../auth/Login"
+import { Register } from "../auth/Register"
+
 
 export const ApplicationViews = () => {
- return (
-    <Router>
-      <Routes>
-        <Route path="/" exact component={CategoryList} />
-        <Route path="/create-category" exact component={CategoryForm} />
-        <Route path="/categories/:categoryId" component={CategoryView} />
-      </Routes>
-    </Router>
-  );
-};
+  const [loggedInUser, setLoggedInUser] = useState(null)
 
-export default ApplicationViews;
+  useEffect(() => {
+    // check if user is logged in
+    const user = localStorage.getItem("rare_user")
+    if (!!user) {
+      // user exists in local storage
+      setLoggedInUser(JSON.parse(user))
+    } else {
+      // user does not exist in local storage
+      setLoggedInUser(null)
+    }
+  }, [])
+
+  return (
+    <Routes>
+      <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+      <Route path="/register" element={<Register setLoggedInUser={setLoggedInUser} />} />
+    </Routes>
+  )
+}

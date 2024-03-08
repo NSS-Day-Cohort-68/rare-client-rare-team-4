@@ -1,0 +1,58 @@
+/* basic login/register page styling */
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+}
+.login__card {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.login__btn,
+.login__input {
+  margin: 15px 0px;
+  width: 300px;
+}
+.register__input {
+  width: 300px;
+}
+#login__bio-input {
+  height: 100px;
+  resize: none;
+}
+
+.login__register-link {
+  margin-top: 50px;
+  position: fixed;
+  bottom: 100px;
+}
+
+#auth-link {
+  color: #0c6ffd;
+  text-decoration: none;
+}
+
+#auth-link:hover {
+  text-decoration: underline;
+}
