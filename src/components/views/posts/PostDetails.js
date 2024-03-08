@@ -23,13 +23,17 @@ export const PostDetails = () => {
     <div className="post-details__container">
       {!isEmptyObject(post) && post && (
         <>
-          <h1 className="post-details__title">{post.title}</h1>
-          {/* <div className="post-details__img">Image: {post.image_url}</div> */}
-          <h3 className="post-details__date">Published on {formatDate(post.publication_date)}</h3>
-          <h3 className="post-details__username">
-            By <i className="post-details__username-name">{post.user.username}</i>
-          </h3>
-          <p className="post-details__content">{post.content}</p>
+          <div className="post-details__content-a">
+            <h1 className="post-details__title">{post.title}</h1>
+            {post.image_url && <img className="post-details__img" alt="header" src={post.image_url} />}
+          </div>
+          <div className="post-details__content-b">
+            <h3 className="post-details__date">Published on {formatDate(post.publication_date)}</h3>
+            <h3 className="post-details__username">
+              By <i className="post-details__username-name">{post.user.username}</i>
+            </h3>
+          </div>
+          <p className="post-details__body">{post.content}</p>
         </>
       )}
     </div>

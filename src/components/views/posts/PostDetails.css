@@ -14,7 +14,6 @@
   margin-bottom: 10px;
   font-weight: bold;
 }
-
 .post-details__date,
 .post-details__username {
   font-size: 18px;
@@ -24,9 +23,23 @@
 .post-details__username-name {
   color: black;
 }
-
-.post-details__content {
+.post-details__body {
   font-size: 16px;
   line-height: 1.5;
   margin-top: 20px;
+}
+.post-details__img {
+  height: 40px;
+  width: 60%;
+  object-fit: cover;
+}
+
+.post-details__content-a,
+.post-details__content-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-details__content-a {
+  margin-bottom: 10px;
 }
