@@ -2,15 +2,26 @@ import { Link, useLocation } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = ({ setLoggedInUser }) => {
+export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
   const navigate = useNavigate()
   const url = useLocation().pathname
 
   return (
     <ul className="navbar">
       <li className="navbar-item">
-        <Link to="/" className="navbar-link" id={url === "/" ? "selected" : ""}>
-          Home
+        {loggedInUser ? (
+          <Link to="/" className="navbar-link" id={url === "/" ? "selected" : ""}>
+            Home
+          </Link>
+        ) : (
+          <Link to="/h" className="navbar-link" id={url === "/h" ? "selected" : ""}>
+            Home
+          </Link>
+        )}
+      </li>
+      <li className="navbar-item">
+        <Link to="/bruh" className="navbar-link" id={url === "/bruh" ? "selected" : ""}>
+          [example link]
         </Link>
       </li>
 

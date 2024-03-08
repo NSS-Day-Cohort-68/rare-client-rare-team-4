@@ -26,12 +26,13 @@ export const ApplicationViews = () => {
       <Route
         path="/"
         element={
-          <AuthorizedRoute>
-            <NavBar setLoggedInUser={setLoggedInUser} />
+          <AuthorizedRoute url={location.pathname}>
+            <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
             <Outlet />
           </AuthorizedRoute>
         }>
-        <Route index element={<>[home page]</>} /> {/* home page will go here */}
+        <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
+        <Route path="/bruh" element={<>[example path]</>} />
         {/*//* add more application routes here */}
       </Route>
 
@@ -48,6 +49,15 @@ export const ApplicationViews = () => {
         element={
           <AuthorizedRoute isPublicOnly={true}>
             <Register setLoggedInUser={setLoggedInUser} />
+          </AuthorizedRoute>
+        }
+      />
+      <Route
+        path="/h"
+        element={
+          <AuthorizedRoute isPublicOnly={true}>
+            <NavBar setLoggedInUser={setLoggedInUser} />
+            <>Rare - Home Page</> {/* home page will go here, too */}
           </AuthorizedRoute>
         }
       />

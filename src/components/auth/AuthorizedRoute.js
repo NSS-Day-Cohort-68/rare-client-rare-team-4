@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 
-export const AuthorizedRoute = ({ children, isPublicOnly = false }) => {
+export const AuthorizedRoute = ({ children, isPublicOnly = false, url }) => {
   const location = useLocation()
   const localUser = localStorage.getItem("rare_user")
 
@@ -11,6 +11,9 @@ export const AuthorizedRoute = ({ children, isPublicOnly = false }) => {
       return children
     } else {
       // if the user is not logged in, do not allow entry
+      if (url === "/") {
+        return <Navigate to="/h" state={{ from: location }} replace />
+      }
       return <Navigate to="/login" state={{ from: location }} replace />
     }
   } else {
