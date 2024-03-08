@@ -18,8 +18,7 @@ export const App = () => {
 
   return (
     <div className="app-container">
-      <ApplicationViews />
-      <UserPostList currentUser={currentUser}/>
+      <ApplicationViews currentUser={currentUser}/>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
+import { UserPostList } from "../users/userPost.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -33,6 +34,7 @@ export const ApplicationViews = () => {
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/bruh" element={<>[example path]</>} />
+        <Route path="/userPosts" element={<UserPostList loggedInUser = {loggedInUser} />} />
         {/*//* add more application routes here */}
       </Route>
 

@@ -1,40 +1,41 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import "./users.css"
 
 import { getAllPosts, getPostByUserId } from "../../managers/postManager.js"
 
 
-export const UserPostList = ({currentUser}) => {
+export const UserPostList = ({loggedInUser}) => {
     const [allPosts, setAllPosts] = useState([])
     const [showFilteredPosts, setShowFilteredPosts] = useState([])
     
 
-
+    useEffect(()=>{
+        getAllPosts().then(postArray=>{
+            setAllPosts(postArray)
+        })
+    },[])
 
     useEffect(()=>{
-        if (currentUser){
-            getAllPosts().then(postArray=>{
-                const userPosts = postArray.filter(post=>post.userId===currentUser.id)
-                // userPosts.sort((a,b)=>a.date - b.date)
+        if (loggedInUser){
+            getAllPosts().then(userPostArray=>{
+                const userPosts = userPostArray.filter(post=>post.user_id===loggedInUser.id)
+                userPosts.sort((a,b)=>new Date(b.publication_date) - new Date(a.publication_date))
                 setShowFilteredPosts(userPosts)
             })
         }
-    },[currentUser, allPosts])
+    },[loggedInUser, allPosts])
 
-    // useEffect(()=>{
-    //     getAllPosts().then(postArray=>{
-    //         setAllPosts(postArray)
-    //     })
-    // },[])
 
 
     return (
         <>
-        <h1>My Posts</h1>
-        {allPosts.length > 0 ? (
-            allPosts.map(post=>(
-                <div className="userPosts">
-                    <div className="userTitle">{post.title}</div>
+        <section className= "userProfile">
+        <h1 className="myPosts">My Posts</h1>
+        {showFilteredPosts.length > 0 ? (
+            showFilteredPosts.map(post=>(
+                <div key={post.id} className="userPosts">
+                    <div className="userTitle"><h2>{post.title}</h2></div>
                     <div className="userAuthor">{post.user_id}</div>
                     <div className="userDate">{post.publication_date}</div>
                     <div className="userCategory">{post.category_id}</div>
@@ -44,6 +45,7 @@ export const UserPostList = ({currentUser}) => {
         ): (
             <p>No posts found for current user.</p>
         )}
+        </section>
         </>
     )
 }
