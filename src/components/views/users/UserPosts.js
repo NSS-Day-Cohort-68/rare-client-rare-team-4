@@ -1,32 +1,31 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import "./users.css";
+import { useEffect, useState } from "react"
+import "./users.css"
 
-import { getAllPosts, getPostByUserId } from "../../../managers/postManager.js";
+import { getAllPosts } from "../../../managers/postManager.js"
 
 export const UserPostList = ({ loggedInUser }) => {
-  const [allPosts, setAllPosts] = useState([]);
-  const [showFilteredPosts, setShowFilteredPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([])
+  const [showFilteredPosts, setShowFilteredPosts] = useState([])
 
   useEffect(() => {
     getAllPosts().then((postArray) => {
-      setAllPosts(postArray);
-    });
-  }, []);
+      setAllPosts(postArray)
+    })
+  }, [])
 
   useEffect(() => {
     if (loggedInUser) {
       getAllPosts().then((userPostArray) => {
         const userPosts = userPostArray.filter(
           (post) => post.user_id === loggedInUser.id
-        );
+        )
         userPosts.sort(
           (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
-        );
-        setShowFilteredPosts(userPosts);
-      });
+        )
+        setShowFilteredPosts(userPosts)
+      })
     }
-  }, [loggedInUser, allPosts]);
+  }, [loggedInUser, allPosts])
 
   return (
     <>
@@ -49,5 +48,5 @@ export const UserPostList = ({ loggedInUser }) => {
         )}
       </section>
     </>
-  );
-};
+  )
+}
