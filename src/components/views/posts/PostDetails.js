@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getPostById } from "../../../managers/postManager"
-import { isEmptyObject } from "../../../helper"
+import { formatDate, isEmptyObject } from "../../../helper"
+import "./PostDetails.css"
 
 export const PostDetails = () => {
   const [post, setPost] = useState(null)
@@ -22,11 +23,13 @@ export const PostDetails = () => {
     <div className="post-details__container">
       {!isEmptyObject(post) && post && (
         <>
-          <div className="post-details__title">Title: {post.title}</div>
-          <div className="post-details__img">Image: {post.image_url}</div>
-          <div className="post-details__content">Content:</div>
-          <div className="post-details__date">Date (MM/DD/YYYY):</div>
-          <div className="post-details__username">Username:</div>
+          <h1 className="post-details__title">{post.title}</h1>
+          {/* <div className="post-details__img">Image: {post.image_url}</div> */}
+          <h3 className="post-details__date">Published on {formatDate(post.publication_date)}</h3>
+          <h3 className="post-details__username">
+            By <i className="post-details__username-name">{post.user.username}</i>
+          </h3>
+          <p className="post-details__content">{post.content}</p>
         </>
       )}
     </div>
