@@ -26,7 +26,7 @@ export const PostsList = () => {
             </ul>
           ))
         ) : (
-          <>No posts have been created yet.</>
+          <div className="posts-list__message">No posts have been created yet.</div>
         )}
       </div>
     </>

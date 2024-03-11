@@ -39,7 +39,7 @@ export const UserPostList = ({ loggedInUser }) => {
             </div>
           ))
         ) : (
-          <p>No posts found for current user.</p>
+          <div className="posts-list__message">No posts found for current user.</div>
         )}
       </div>
     </>
