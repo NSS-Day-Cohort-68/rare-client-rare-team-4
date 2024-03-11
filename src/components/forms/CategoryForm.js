@@ -5,23 +5,29 @@ import { createCategory } from '../../managers/categoryManager';
 
 
 const CategoryForm = () => {
-  const [categoryLabel, setCategoryLabel] = useState('');
-  const navigate = useNavigate();
+  const [categoryLabel, setCategoryLabel] = useState('')
+  const navigate = useNavigate()
 
   const handleSaveCategory = async () => {
     
     try {
-      const newCategory = {
-        label: categoryLabel,
-      };
+      const trimmedLabel = categoryLabel.trim()
       
-      await createCategory(newCategory);
-      navigate('/category-list');
-    } catch (error) {
-      console.error('Error saving category:', error);
+      if (trimmedLabel) {
+        const newCategory = {
+          label: trimmedLabel,
+        }
+      
+        await createCategory(newCategory)
+        navigate('/category-list')
+      } else {
+        console.error('Category label is empty or contains only whitespaces')
+      }
+      } catch (error) {
+      console.error('Error saving category:', error)
       
     }
-  };
+  }
 
   return (
     <div>
