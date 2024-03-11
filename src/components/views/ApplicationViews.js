@@ -4,6 +4,8 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
+import CategoryList from "../lists/CategoryList"
+import CategoryForm from "../forms/CategoryForm"
 
 
 export const ApplicationViews = () => {
@@ -34,6 +36,8 @@ export const ApplicationViews = () => {
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/bruh" element={<>[example path]</>} />
+        <Route path="/category-list" element={<CategoryList />} />
+        <Route path="/createCategory" element={<CategoryForm />} />
         {/*//* add more application routes here */}
       </Route>
 

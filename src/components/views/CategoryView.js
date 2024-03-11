@@ -6,7 +6,7 @@ const CategoryView = () => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    // Simulating fetching category details from an API
+    
     const fetchCategoryDetails = async () => {
       try {
         const response = await fetch(`/api/categories/${categoryId}`);
@@ -17,7 +17,7 @@ const CategoryView = () => {
       }
     };
 
-    // Call the function to fetch category details
+    
     fetchCategoryDetails();
   }, [categoryId]);
 

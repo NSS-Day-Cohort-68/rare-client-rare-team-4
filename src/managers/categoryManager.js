@@ -9,5 +9,5 @@ export const createCategory = (category) => {
 }
 
 export const getAllCategories = () => {
-    return fetch("http://localhost:8088/catergories").then((res) => res.json())
+    return fetch("http://localhost:8000/categories").then((res) => res.json())
 }

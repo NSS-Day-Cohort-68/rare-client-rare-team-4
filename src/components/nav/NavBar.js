@@ -26,7 +26,12 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
       </li>
 
       {/*//* add more navbar items here */}
-
+      <li className="navbar-item">
+        <Link to="/category-list" className="navbar-link" id={url === "/category-list" ? "selected" : ""}>
+          Category Management
+        </Link>
+      </li>
+      
       {localStorage.getItem("rare_user") ? (
         <li className="navbar-item navbar-logout">
           <Link
