@@ -7,6 +7,8 @@ import { NavBar } from "../nav/NavBar"
 import CategoryList from "../lists/CategoryList"
 import CategoryForm from "../forms/CategoryForm"
 
+import { PostDetails } from "./posts/PostDetails"
+import { UserPostList } from "./users/UserPosts.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -30,14 +32,29 @@ export const ApplicationViews = () => {
         path="/"
         element={
           <AuthorizedRoute url={location.pathname}>
-            <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+            <NavBar
+              loggedInUser={loggedInUser}
+              setLoggedInUser={setLoggedInUser}
+            />
             <Outlet />
           </AuthorizedRoute>
-        }>
-        <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
-        <Route path="/bruh" element={<>[example path]</>} />
+        }
+      >
+        <Route index element={<>Rare - Home Page</>} />{" "}
+        {/* home page will go here */}
         <Route path="/category-list" element={<CategoryList />} />
         <Route path="/createCategory" element={<CategoryForm />} />
+        <Route path="/post-details">
+          <Route
+            index
+            element={<Navigate to={"/"} state={{ from: location }} replace />}
+          />
+          <Route path=":postId" element={<PostDetails />} />
+        </Route>
+        <Route
+          path="/userPosts"
+          element={<UserPostList loggedInUser={loggedInUser} />}
+        />
         {/*//* add more application routes here */}
       </Route>
 
@@ -67,7 +84,10 @@ export const ApplicationViews = () => {
         }
       />
 
-      <Route path="*" element={<Navigate to={"/"} state={{ from: location }} replace />} />
+      <Route
+        path="*"
+        element={<Navigate to={"/"} state={{ from: location }} replace />}
+      />
     </Routes>
   )
 }
