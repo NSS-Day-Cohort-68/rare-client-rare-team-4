@@ -10,35 +10,21 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
     <ul className="navbar">
       <li className="navbar-item">
         {loggedInUser ? (
-          <Link
-            to="/"
-            className="navbar-link"
-            id={url === "/" ? "selected" : ""}
-          >
+          <Link to="/" className="navbar-link" id={url === "/" ? "selected" : ""}>
             Home
           </Link>
         ) : (
-          <Link
-            to="/h"
-            className="navbar-link"
-            id={url === "/h" ? "selected" : ""}
-          >
+          <Link to="/h" className="navbar-link" id={url === "/h" ? "selected" : ""}>
             Home
           </Link>
         )}
       </li>
 
       <li className="navbar-item">
-        <Link
-          to="/userPosts"
-          className="navbar-link"
-          id={url === "/userPosts" ? "selected" : ""}
-        >
-          User Posts
+        <Link to="/userPosts" className="navbar-link" id={url === "/userPosts" ? "selected" : ""}>
+          My Posts
         </Link>
       </li>
-
-      {/*//* add more navbar items here */}
 
       {localStorage.getItem("rare_user") ? (
         <li className="navbar-item navbar-logout">
@@ -49,8 +35,7 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
               setLoggedInUser(null)
               navigate("/login", { replace: true })
             }}
-            className="navbar-link"
-          >
+            className="navbar-link">
             Logout
           </Link>
         </li>

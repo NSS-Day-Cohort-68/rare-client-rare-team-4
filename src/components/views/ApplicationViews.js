@@ -29,28 +29,16 @@ export const ApplicationViews = () => {
         path="/"
         element={
           <AuthorizedRoute url={location.pathname}>
-            <NavBar
-              loggedInUser={loggedInUser}
-              setLoggedInUser={setLoggedInUser}
-            />
+            <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
             <Outlet />
           </AuthorizedRoute>
-        }
-      >
-        <Route index element={<>Rare - Home Page</>} />{" "}
-        {/* home page will go here */}
+        }>
+        <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/post-details">
-          <Route
-            index
-            element={<Navigate to={"/"} state={{ from: location }} replace />}
-          />
+          <Route index element={<Navigate to={"/"} state={{ from: location }} replace />} />
           <Route path=":postId" element={<PostDetails />} />
         </Route>
-        <Route
-          path="/userPosts"
-          element={<UserPostList loggedInUser={loggedInUser} />}
-        />
-        {/*//* add more application routes here */}
+        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
       </Route>
 
       <Route
@@ -79,10 +67,7 @@ export const ApplicationViews = () => {
         }
       />
 
-      <Route
-        path="*"
-        element={<Navigate to={"/"} state={{ from: location }} replace />}
-      />
+      <Route path="*" element={<Navigate to={"/"} state={{ from: location }} replace />} />
     </Routes>
   )
 }
