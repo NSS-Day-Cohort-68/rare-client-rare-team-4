@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./users.css"
+// import "./users.css"
 
 import { getAllPosts } from "../../../managers/postManager.js"
 
@@ -16,12 +16,8 @@ export const UserPostList = ({ loggedInUser }) => {
   useEffect(() => {
     if (loggedInUser) {
       getAllPosts().then((userPostArray) => {
-        const userPosts = userPostArray.filter(
-          (post) => post.user_id === loggedInUser.id
-        )
-        userPosts.sort(
-          (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
-        )
+        const userPosts = userPostArray.filter((post) => post.user_id === loggedInUser.id)
+        userPosts.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date))
         setShowFilteredPosts(userPosts)
       })
     }

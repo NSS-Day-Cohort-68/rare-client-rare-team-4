@@ -5,7 +5,7 @@ import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
 import { PostDetails } from "./posts/PostDetails"
-import { UserPostList } from "./users/UserPosts.js"
+import { UserPostList } from "./posts/UserPosts.js"
 import { PostsList } from "./posts/PostsList.js"
 
 export const ApplicationViews = () => {
