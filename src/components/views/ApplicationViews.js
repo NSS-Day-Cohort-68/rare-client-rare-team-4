@@ -1,25 +1,27 @@
-import { useEffect, useState } from "react"
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
-import { Login } from "../auth/Login"
-import { Register } from "../auth/Register"
-import { AuthorizedRoute } from "../auth/AuthorizedRoute"
-import { NavBar } from "../nav/NavBar"
+import { useEffect, useState } from "react";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Login } from "../auth/Login";
+import { Register } from "../auth/Register";
+import { AuthorizedRoute } from "../auth/AuthorizedRoute";
+import { NavBar } from "../nav/NavBar";
+import { CreateTagForm } from "../tags/CreateTagForm.js";
+import { TagList } from "../tags/TagList.js";
 
 export const ApplicationViews = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null)
-  const location = useLocation()
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     // check if user is logged in
-    const user = localStorage.getItem("rare_user")
+    const user = localStorage.getItem("rare_user");
     if (!!user) {
       // user exists in local storage
-      setLoggedInUser(JSON.parse(user))
+      setLoggedInUser(JSON.parse(user));
     } else {
       // user does not exist in local storage
-      setLoggedInUser(null)
+      setLoggedInUser(null);
     }
-  }, [])
+  }, []);
 
   return (
     <Routes>
@@ -27,12 +29,19 @@ export const ApplicationViews = () => {
         path="/"
         element={
           <AuthorizedRoute url={location.pathname}>
-            <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+            <NavBar
+              loggedInUser={loggedInUser}
+              setLoggedInUser={setLoggedInUser}
+            />
             <Outlet />
           </AuthorizedRoute>
-        }>
-        <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
+        }
+      >
+        <Route index element={<>Rare - Home Page</>} />{" "}
+        {/* home page will go here */}
         <Route path="/bruh" element={<>[example path]</>} />
+        <Route path="/tags" element={<TagList />} />
+        <Route path="/tags/create" element={<CreateTagForm />} />
         {/*//* add more application routes here */}
       </Route>
 
@@ -62,7 +71,10 @@ export const ApplicationViews = () => {
         }
       />
 
-      <Route path="*" element={<Navigate to={"/"} state={{ from: location }} replace />} />
+      <Route
+        path="*"
+        element={<Navigate to={"/"} state={{ from: location }} replace />}
+      />
     </Routes>
-  )
-}
+  );
+};
