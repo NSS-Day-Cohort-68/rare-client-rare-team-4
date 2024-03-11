@@ -16,11 +16,13 @@ export const PostsList = () => {
         {allPosts.length > 0 ? (
           allPosts.map((post) => (
             <ul key={post.id} className="post__container">
-              <li className="post__title">{post.title}</li>
-              <li className="post__author">{post.user.username}</li>
-              <li className="post__date">{post.publication_date}</li>
-              <li className="post__category">{post.category.label}</li>
-              <li className="post__body">{post.content}</li>
+              <div className="post__content-a">
+                <li className="post__title">{post.title}</li>
+                <li className="post__category">{post.category.label}</li>
+              </div>
+              <li className="post__username">
+                By <i className="post__username-name">{post.user.username}</i>
+              </li>
             </ul>
           ))
         ) : (

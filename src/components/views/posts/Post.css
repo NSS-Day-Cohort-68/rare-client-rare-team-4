@@ -1,24 +1,56 @@
-/* !!! */
-/*
-.userProfle {
-  display: flex;
-}
-
-.myPosts {
-  display: flex;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: x-large;
-}
-
-.userPosts {
-  display: flex;
+.post-details__container,
+.post__container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  flex-direction: column;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Lato", sans-serif;
+  margin-bottom: 30px;
 }
 
-.userTitle {
+.post__title {
+  font-size: 24px;
   font-weight: bold;
-  text-decoration: underline;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
-*/
+.post__date,
+.post__username {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.post__username-name {
+  color: black;
+}
+.post__body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+.post__img {
+  height: 40px;
+  width: 60%;
+  object-fit: cover;
+}
+
+.post-details__content-a,
+.post-details__content-b,
+.post__content-a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-details__content-a {
+  margin-bottom: 10px;
+}
+
+.posts-list__header {
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
