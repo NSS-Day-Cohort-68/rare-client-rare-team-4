@@ -40,7 +40,11 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
           </Link>
         </li>
       ) : (
-        ""
+        <li className="navbar-item navbar-logout">
+          <Link to="/login" className="navbar-link">
+            Login
+          </Link>
+        </li>
       )}
     </ul>
   )
