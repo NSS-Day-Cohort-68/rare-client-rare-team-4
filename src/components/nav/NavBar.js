@@ -21,6 +21,12 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
       </li>
 
       <li className="navbar-item">
+        <Link to="/posts" className="navbar-link" id={url === "/posts" ? "selected" : ""}>
+          Posts
+        </Link>
+      </li>
+
+      <li className="navbar-item">
         <Link to="/userPosts" className="navbar-link" id={url === "/userPosts" ? "selected" : ""}>
           My Posts
         </Link>

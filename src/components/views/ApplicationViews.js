@@ -6,6 +6,7 @@ import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./users/UserPosts.js"
+import { PostsList } from "./posts/PostsList.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -34,11 +35,12 @@ export const ApplicationViews = () => {
           </AuthorizedRoute>
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
+        <Route path="/posts" element={<PostsList />} />
+        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
         <Route path="/post-details">
           <Route index element={<Navigate to={"/"} state={{ from: location }} replace />} />
           <Route path=":postId" element={<PostDetails />} />
         </Route>
-        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
       </Route>
 
       <Route
