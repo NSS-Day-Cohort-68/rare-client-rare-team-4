@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
-import { Login } from "../auth/Login";
-import { Register } from "../auth/Register";
-import { AuthorizedRoute } from "../auth/AuthorizedRoute";
-import { NavBar } from "../nav/NavBar";
-import { CreateTagForm } from "../tags/CreateTagForm.js";
-import { TagList } from "../tags/TagList.js";
-import { PostDetails } from "./posts/PostDetails";
-import { UserPostList } from "./users/UserPosts.js";
+import { useEffect, useState } from "react"
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
+import { Login } from "../auth/Login"
+import { Register } from "../auth/Register"
+import { AuthorizedRoute } from "../auth/AuthorizedRoute"
+import { NavBar } from "../nav/NavBar"
+import { CreateTagForm } from "../tags/CreateTagForm.js"
+import { TagList } from "../tags/TagList.js"
+import { PostDetails } from "./posts/PostDetails"
+import { UserPostList } from "./users/UserPosts.js"
 
 export const ApplicationViews = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  const location = useLocation();
+  const [loggedInUser, setLoggedInUser] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     // check if user is logged in
-    const user = localStorage.getItem("rare_user");
+    const user = localStorage.getItem("rare_user")
     if (!!user) {
       // user exists in local storage
-      setLoggedInUser(JSON.parse(user));
+      setLoggedInUser(JSON.parse(user))
     } else {
       // user does not exist in local storage
-      setLoggedInUser(null);
+      setLoggedInUser(null)
     }
-  }, []);
+  }, [])
 
   return (
     <Routes>
@@ -56,7 +56,6 @@ export const ApplicationViews = () => {
         />
         {/*//* add more application routes here */}
       </Route>
-
       <Route
         path="/login"
         element={
@@ -88,5 +87,5 @@ export const ApplicationViews = () => {
         element={<Navigate to={"/"} state={{ from: location }} replace />}
       />
     </Routes>
-  );
-};
+  )
+}
