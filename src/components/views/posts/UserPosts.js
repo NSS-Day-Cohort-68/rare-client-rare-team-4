@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
-// import "./users.css"
-
 import { getAllPosts } from "../../../managers/postManager.js"
+import "./Post.css"
 
 export const UserPostList = ({ loggedInUser }) => {
   const [allPosts, setAllPosts] = useState([])
@@ -25,24 +24,24 @@ export const UserPostList = ({ loggedInUser }) => {
 
   return (
     <>
-      <section className="userProfile">
-        <h1 className="myPosts">My Posts</h1>
+      <div className="posts-list__container">
+        <h1 className="posts-list__header">My Posts</h1>
         {showFilteredPosts.length > 0 ? (
           showFilteredPosts.map((post) => (
-            <div key={post.id} className="userPosts">
-              <div className="userTitle">
-                <h2>{post.title}</h2>
+            <div key={post.id} className="post__container">
+              <div className="post__content-a">
+                <h2 className="post__title">{post.title}</h2>
+                <div className="post__category">{post.category.label}</div>
               </div>
-              <div className="userAuthor">{post.user.username}</div>
-              <div className="userDate">{post.publication_date}</div>
-              <div className="userCategory">{post.category.label}</div>
-              <div className="userContent">{post.content}</div>
+              <div className="post__username">
+                By <i className="post__username-name">{post.user.username}</i>
+              </div>
             </div>
           ))
         ) : (
           <p>No posts found for current user.</p>
         )}
-      </section>
+      </div>
     </>
   )
 }
