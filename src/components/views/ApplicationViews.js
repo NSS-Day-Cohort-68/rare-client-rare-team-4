@@ -7,6 +7,8 @@ import { NavBar } from "../nav/NavBar"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./posts/UserPosts.js"
 import { PostsList } from "./posts/PostsList.js"
+import { CreateTagForm } from "../tags/CreateTagForm.js"
+import { TagList } from "../tags/TagList.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -37,6 +39,8 @@ export const ApplicationViews = () => {
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/posts" element={<PostsList />} />
         <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
+        <Route path="/tags" element={<TagList />} />
+        <Route path="/tags/create" element={<CreateTagForm />} />
         <Route path="/post-details">
           <Route index element={<Navigate to={"/"} state={{ from: location }} replace />} />
           <Route path=":postId" element={<PostDetails />} />
