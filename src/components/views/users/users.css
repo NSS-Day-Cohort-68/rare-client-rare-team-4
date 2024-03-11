@@ -1,0 +1,21 @@
+.userProfle {
+  display: flex;
+}
+
+.myPosts {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+.userPosts {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.userTitle {
+  font-weight: bold;
+  text-decoration: underline;
+}
