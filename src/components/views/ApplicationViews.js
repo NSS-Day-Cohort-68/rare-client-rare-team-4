@@ -4,6 +4,7 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
+import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./users/UserPosts.js"
 
 export const ApplicationViews = () => {
@@ -38,7 +39,13 @@ export const ApplicationViews = () => {
       >
         <Route index element={<>Rare - Home Page</>} />{" "}
         {/* home page will go here */}
-        <Route path="/bruh" element={<>[example path]</>} />
+        <Route path="/post-details">
+          <Route
+            index
+            element={<Navigate to={"/"} state={{ from: location }} replace />}
+          />
+          <Route path=":postId" element={<PostDetails />} />
+        </Route>
         <Route
           path="/userPosts"
           element={<UserPostList loggedInUser={loggedInUser} />}

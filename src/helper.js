@@ -24,3 +24,9 @@ export const isEmptyObject = (obj) => {
   }
   return false
 }
+
+// converts YYYY-MM-DD to MM/DD/YYYY
+export const formatDate = (date) => {
+  const newDate = new Date(date.replace(/-/g, "/"))
+  return `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`
+}
