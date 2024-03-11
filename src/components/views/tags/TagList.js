@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getAllTags } from "../../managers/tagManager.js"
+import { getAllTags } from "../../../managers/tagManager.js"
+import { sortAlphabetically } from "../../../helper.js"
 
 export const TagList = () => {
   const [allTags, setAllTags] = useState([])
@@ -8,7 +9,8 @@ export const TagList = () => {
 
   useEffect(() => {
     getAllTags().then((tagsArray) => {
-      setAllTags(tagsArray)
+      const alphabetizedTags = sortAlphabetically(tagsArray, "label")
+      setAllTags(alphabetizedTags)
     }, [])
   })
   return (
