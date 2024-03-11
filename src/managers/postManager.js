@@ -1,6 +1,6 @@
 import { apiUrl } from "../helper"
 
-export const getPosts = async () => {
+export const getAllPosts = async () => {
   return await fetch(`${apiUrl}/posts`).then((res) => res.json())
 }
 
