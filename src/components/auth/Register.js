@@ -1,39 +1,39 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, FormGroup, Input, Label } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Login.css";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { Button, FormGroup, Input, Label } from "reactstrap"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./Login.css"
 import {
   createUser,
   getUserByEmail,
   getUserById,
-} from "../../managers/userManager";
-import { isEmptyObject } from "../../helper";
+} from "../../managers/userManager"
+import { isEmptyObject } from "../../helper"
 
 export const Register = ({ setLoggedInUser }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const navigate = useNavigate()
 
   const trimInput = () => {
-    setFirstName(firstName.trim());
-    setLastName(lastName.trim());
-    setUsername(username.trim());
-    setEmail(email.trim());
-  };
+    setFirstName(firstName.trim())
+    setLastName(lastName.trim())
+    setUsername(username.trim())
+    setEmail(email.trim())
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    trimInput();
+    e.preventDefault()
+    trimInput()
 
     if (!firstName || !lastName || !username || !email) {
-      window.alert("Please complete the required fields");
+      window.alert("Please complete the required fields")
     } else {
       getUserByEmail(email).then((user) => {
         if (!isEmptyObject(user)) {
-          window.alert("Account already in use");
+          window.alert("Account already in use")
         } else {
           createUser({
             first_name: firstName,
@@ -47,15 +47,15 @@ export const Register = ({ setLoggedInUser }) => {
                 JSON.stringify({
                   ...newUser,
                 })
-              );
-              setLoggedInUser(newUser);
-              navigate("/");
-            });
-          });
+              )
+              setLoggedInUser(newUser)
+              navigate("/")
+            })
+          })
         }
-      });
+      })
     }
-  };
+  }
 
   return (
     <div className="login__container">
@@ -130,5 +130,5 @@ export const Register = ({ setLoggedInUser }) => {
         !
       </p>
     </div>
-  );
-};
+  )
+}

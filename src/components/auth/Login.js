@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, FormGroup, Input } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Login.css";
-import { getUserByEmail } from "../../managers/userManager";
-import { isEmptyObject } from "../../helper";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { Button, FormGroup, Input } from "reactstrap"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./Login.css"
+import { getUserByEmail } from "../../managers/userManager"
+import { isEmptyObject } from "../../helper"
 
 export const Login = ({ setLoggedInUser }) => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!username || !email) {
-      window.alert("Please complete the required fields");
+      window.alert("Please complete the required fields")
     } else {
       getUserByEmail(email).then((user) => {
         if (!isEmptyObject(user)) {
@@ -23,16 +23,16 @@ export const Login = ({ setLoggedInUser }) => {
             JSON.stringify({
               ...user,
             })
-          );
+          )
 
-          setLoggedInUser(user);
-          navigate("/");
+          setLoggedInUser(user)
+          navigate("/")
         } else {
-          window.alert("Invalid username or email");
+          window.alert("Invalid username or email")
         }
-      });
+      })
     }
-  };
+  }
 
   return (
     <div className="login__container">
@@ -79,5 +79,5 @@ export const Login = ({ setLoggedInUser }) => {
         to sign up!
       </p>
     </div>
-  );
-};
+  )
+}

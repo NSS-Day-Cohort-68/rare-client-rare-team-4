@@ -37,9 +37,9 @@ export const UserPostList = ({ loggedInUser }) => {
               <div className="userTitle">
                 <h2>{post.title}</h2>
               </div>
-              <div className="userAuthor">{post.user_id}</div>
+              <div className="userAuthor">{post.user.username}</div>
               <div className="userDate">{post.publication_date}</div>
-              <div className="userCategory">{post.category_id}</div>
+              <div className="userCategory">{post.category.label}</div>
               <div className="userContent">{post.content}</div>
             </div>
           ))
