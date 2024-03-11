@@ -9,6 +9,9 @@
   font-family: "Lato", sans-serif;
   margin-bottom: 30px;
 }
+.post__link {
+  text-decoration: none;
+}
 
 .post__title {
   font-size: 24px;
