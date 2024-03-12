@@ -3,11 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button, FormGroup, Input, Label } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
-import {
-  createUser,
-  getUserByEmail,
-  getUserById,
-} from "../../managers/userManager"
+import { createUser, getUserByEmail, getUserById } from "../../managers/userManager"
 import { isEmptyObject } from "../../helper"
 
 export const Register = ({ setLoggedInUser }) => {
@@ -95,11 +91,7 @@ export const Register = ({ setLoggedInUser }) => {
               type="text"
               placeholder="Username"
               value={username}
-              onChange={(e) =>
-                setUsername(
-                  e.target.value.replace(/\s/g, "").trim().toLowerCase()
-                )
-              }
+              onChange={(e) => setUsername(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             />
           </FormGroup>
 
@@ -111,9 +103,7 @@ export const Register = ({ setLoggedInUser }) => {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) =>
-                setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())
-              }
+              onChange={(e) => setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             />
           </FormGroup>
         </div>

@@ -44,11 +44,7 @@ export const Login = ({ setLoggedInUser }) => {
             className="login__input"
             type="text"
             value={username}
-            onChange={(e) =>
-              setUsername(
-                e.target.value.replace(/\s/g, "").trim().toLowerCase()
-              )
-            }
+            onChange={(e) => setUsername(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             placeholder="Username"
           />
         </FormGroup>
@@ -59,9 +55,7 @@ export const Login = ({ setLoggedInUser }) => {
             className="login__input"
             type="email"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())
-            }
+            onChange={(e) => setEmail(e.target.value.replace(/\s/g, "").trim().toLowerCase())}
             placeholder="Email"
           />
         </FormGroup>
