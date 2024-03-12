@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getAllCategories } from "../../../managers/categoryManager"
+import { deleteCategory, getAllCategories } from "../../../managers/categoryManager"
 import "./CategoryList.css"
 import { Button, ListGroup, ListGroupItem } from "reactstrap"
 
 export const CategoryList = () => {
   const [allCategories, setAllCategories] = useState([])
 
-  const handleDelete = (e, category) => {
-    e.preventDefault()
-    if (window.confirm(`Are you sure you want to delete the "${category}" category?`)) {
-      //!
-    }
-  }
-
-  useEffect(() => {
+  const getAndSetCategories = () => {
     getAllCategories().then((categoriesArr) => {
       const sortedCategories = categoriesArr.sort((a, b) => a.label.localeCompare(b.label))
       setAllCategories(sortedCategories)
     })
+  }
+
+  const handleDelete = (e, category) => {
+    e.preventDefault()
+    if (window.confirm(`Are you sure you want to delete the "${category.label}" category?`)) {
+      deleteCategory(category).then(getAndSetCategories)
+    }
+  }
+
+  useEffect(() => {
+    getAndSetCategories()
   }, [])
 
   return (
@@ -34,7 +38,7 @@ export const CategoryList = () => {
                 <i
                   className="fa-solid fa-trash category__delete-btn"
                   onClick={(e) => {
-                    handleDelete(e, category.label)
+                    handleDelete(e, category)
                   }}
                 />
                 &emsp;{category.label}
