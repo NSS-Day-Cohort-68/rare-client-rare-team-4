@@ -13,13 +13,9 @@ export const getUserByEmail = async (email) => {
 }
 
 export const createUser = async (user) => {
-  return await fetch(`${apiUrl}/users`, fetchOptions("POST", user)).then(
-    (res) => res.json()
-  )
+  return await fetch(`${apiUrl}/users`, fetchOptions("POST", user)).then((res) => res.json())
 }
 
 export const userExists = async (user) => {
-  return await fetch(`${apiUrl}/login`, fetchOptions("POST", user)).then(
-    (res) => res.json()
-  )
+  return await fetch(`${apiUrl}/login`, fetchOptions("POST", user)).then((res) => res.json())
 }
