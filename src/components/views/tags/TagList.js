@@ -11,8 +11,8 @@ export const TagList = () => {
     getAllTags().then((tagsArray) => {
       const alphabetizedTags = sortAlphabetically(tagsArray, "label")
       setAllTags(alphabetizedTags)
-    }, [])
-  })
+    })
+  }, [])
   return (
     <div className="tags-container">
       <h2> Tags</h2>
