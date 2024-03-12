@@ -23,7 +23,8 @@ export const CategoryList = () => {
           <ListGroup className="category-list">
             {allCategories.map((category) => (
               <ListGroupItem key={category.id} className="category">
-                {category.label}
+                <i className="fa-solid fa-trash category__delete-btn" />
+                &emsp;{category.label}
               </ListGroupItem>
             ))}
           </ListGroup>

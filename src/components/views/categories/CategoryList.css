@@ -19,3 +19,8 @@
 .category-list__left > * {
   margin-bottom: 10px;
 }
+
+.category__delete-btn:hover {
+  color: red;
+  cursor: pointer;
+}
