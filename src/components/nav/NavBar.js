@@ -39,11 +39,9 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
       </li>
 
       <li className="navbar-item">
-        {loggedInUser && (
-          <Link to="/tags" className="navbar-link" id={url === "/tags" ? "selected" : ""}>
-            Tag Manager
-          </Link>
-        )}
+        <Link to="/tags" className="navbar-link" id={url === "/tags" ? "selected" : ""}>
+          Tag Manager
+        </Link>
       </li>
 
       {localStorage.getItem("rare_user") ? (
