@@ -7,12 +7,20 @@ import { Button, ListGroup, ListGroupItem } from "reactstrap"
 export const CategoryList = () => {
   const [allCategories, setAllCategories] = useState([])
 
+  const handleDelete = (e, category) => {
+    e.preventDefault()
+    if (window.confirm(`Are you sure you want to delete the "${category}" category?`)) {
+      //!
+    }
+  }
+
   useEffect(() => {
     getAllCategories().then((categoriesArr) => {
       const sortedCategories = categoriesArr.sort((a, b) => a.label.localeCompare(b.label))
       setAllCategories(sortedCategories)
     })
   }, [])
+
   return (
     <div className="category-list__container">
       <h1>Category List Page</h1>
@@ -23,7 +31,12 @@ export const CategoryList = () => {
           <ListGroup className="category-list">
             {allCategories.map((category) => (
               <ListGroupItem key={category.id} className="category">
-                <i className="fa-solid fa-trash category__delete-btn" />
+                <i
+                  className="fa-solid fa-trash category__delete-btn"
+                  onClick={(e) => {
+                    handleDelete(e, category.label)
+                  }}
+                />
                 &emsp;{category.label}
               </ListGroupItem>
             ))}
