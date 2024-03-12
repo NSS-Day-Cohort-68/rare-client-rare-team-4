@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { createCategory } from "../../managers/categoryManager"
+import { createCategory } from "../../../managers/categoryManager"
 
 const CategoryForm = () => {
   const [categoryLabel, setCategoryLabel] = useState("")

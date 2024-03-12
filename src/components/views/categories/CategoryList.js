@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getAllCategories } from "../../managers/categoryManager"
-import "./List.css"
+import { getAllCategories } from "../../../managers/categoryManager"
+import "./CategoryList.css"
 import { Button, ListGroup, ListGroupItem } from "reactstrap"
 
 export const CategoryList = () => {

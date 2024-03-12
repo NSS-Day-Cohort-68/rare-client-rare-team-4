@@ -22,15 +22,8 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
 
       <li className="navbar-item">
         <Link to="/posts" className="navbar-link" id={url === "/posts" ? "selected" : ""}>
-          Posts
+          All Posts
         </Link>
-      </li>
-      <li className="navbar-item">
-        {loggedInUser && (
-          <Link to="/tags" className="navbar-link" id={url === "/tags" ? "selected" : ""}>
-            Tags
-          </Link>
-        )}
       </li>
 
       <li className="navbar-item">
@@ -41,8 +34,16 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
 
       <li className="navbar-item">
         <Link to="/category-list" className="navbar-link" id={url === "/category-list" ? "selected" : ""}>
-          Category Management
+          Category Manager
         </Link>
+      </li>
+
+      <li className="navbar-item">
+        {loggedInUser && (
+          <Link to="/tags" className="navbar-link" id={url === "/tags" ? "selected" : ""}>
+            Tag Manager
+          </Link>
+        )}
       </li>
 
       {localStorage.getItem("rare_user") ? (

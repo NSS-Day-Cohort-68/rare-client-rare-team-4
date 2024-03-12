@@ -7,9 +7,9 @@ import { NavBar } from "../nav/NavBar"
 import { CreateTagForm } from "./tags/CreateTagForm.js"
 import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
-import { UserPostList } from "./users/UserPosts.js"
-import CategoryList from "../lists/CategoryList"
-import CategoryForm from "../forms/CategoryForm"
+import { UserPostList } from "./posts/UserPosts.js"
+import CategoryList from "./categories/CategoryList.js"
+import CategoryForm from "./categories/CategoryForm.js"
 import { PostsList } from "./posts/PostsList.js"
 
 export const ApplicationViews = () => {
