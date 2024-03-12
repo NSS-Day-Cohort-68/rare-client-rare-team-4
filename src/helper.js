@@ -28,5 +28,12 @@ export const isEmptyObject = (obj) => {
 // converts YYYY-MM-DD to MM/DD/YYYY
 export const formatDate = (date) => {
   const newDate = new Date(date.replace(/-/g, "/"))
-  return `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`
+  return `${
+    newDate.getMonth() + 1
+  }/${newDate.getDate()}/${newDate.getFullYear()}`
+}
+
+// sorts given array alphabetically based on given key
+export const sortAlphabetically = (array, key) => {
+  return array.sort((a, b) => a[key].localeCompare(b[key]))
 }
