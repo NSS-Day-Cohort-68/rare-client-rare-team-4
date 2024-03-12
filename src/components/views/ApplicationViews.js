@@ -4,11 +4,13 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
+import { CreateTagForm } from "./tags/CreateTagForm.js"
+import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
-import { UserPostList } from "./posts/UserPosts.js"
+import { UserPostList } from "./users/UserPosts.js"
+import CategoryList from "../lists/CategoryList"
+import CategoryForm from "../forms/CategoryForm"
 import { PostsList } from "./posts/PostsList.js"
-import { CreateTagForm } from "../tags/CreateTagForm.js"
-import { TagList } from "../tags/TagList.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -37,16 +39,17 @@ export const ApplicationViews = () => {
           </AuthorizedRoute>
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
-        <Route path="/posts" element={<PostsList />} />
-        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
+        <Route path="/category-list" element={<CategoryList />} />
+        <Route path="/createCategory" element={<CategoryForm />} />
         <Route path="/tags" element={<TagList />} />
         <Route path="/tags/create" element={<CreateTagForm />} />
+        <Route path="/posts" element={<PostsList />} />
+        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
         <Route path="/post-details">
           <Route index element={<Navigate to={"/"} state={{ from: location }} replace />} />
           <Route path=":postId" element={<PostDetails />} />
         </Route>
       </Route>
-
       <Route
         path="/login"
         element={

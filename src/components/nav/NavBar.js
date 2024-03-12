@@ -1,10 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import "./NavBar.css";
+import { Link, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import "./NavBar.css"
 
 export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
-  const navigate = useNavigate();
-  const url = useLocation().pathname;
+  const navigate = useNavigate()
+  const url = useLocation().pathname
 
   return (
     <ul className="navbar">
@@ -27,11 +27,7 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
       </li>
       <li className="navbar-item">
         {loggedInUser && (
-          <Link
-            to="/tags"
-            className="navbar-link"
-            id={url === "/tags" ? "selected" : ""}
-          >
+          <Link to="/tags" className="navbar-link" id={url === "/tags" ? "selected" : ""}>
             Tags
           </Link>
         )}
@@ -43,14 +39,20 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
         </Link>
       </li>
 
+      <li className="navbar-item">
+        <Link to="/category-list" className="navbar-link" id={url === "/category-list" ? "selected" : ""}>
+          Category Management
+        </Link>
+      </li>
+
       {localStorage.getItem("rare_user") ? (
         <li className="navbar-item navbar-logout">
           <Link
             to=""
             onClick={() => {
-              localStorage.removeItem("rare_user");
-              setLoggedInUser(null);
-              navigate("/login", { replace: true });
+              localStorage.removeItem("rare_user")
+              setLoggedInUser(null)
+              navigate("/login", { replace: true })
             }}
             className="navbar-link">
             Logout
@@ -64,5 +66,5 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
         </li>
       )}
     </ul>
-  );
-};
+  )
+}
