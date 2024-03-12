@@ -14,27 +14,25 @@ export const CategoryList = () => {
     })
   }, [])
   return (
-    <div className="category-list-container">
+    <div className="category-list__container">
       <h1>Category List Page</h1>
 
-      <div className="category-list-content">
-        <div className="category-list-left">
+      <div className="category-list__content">
+        <div className="category-list__left">
           <h2>Existing Categories:</h2>
-          <ListGroup>
+          <ListGroup className="category-list">
             {allCategories.map((category) => (
-              <ListGroupItem key={category.id}>{category.label}</ListGroupItem>
+              <ListGroupItem key={category.id} className="category">
+                {category.label}
+              </ListGroupItem>
             ))}
           </ListGroup>
         </div>
 
-        <div className="category-list-right">
-          <Link to="/createCategory">
-            <Button color="primary">Create Category</Button>
-          </Link>
-        </div>
+        <Link to="/createCategory">
+          <Button color="primary">Create Category</Button>
+        </Link>
       </div>
     </div>
   )
 }
-
-export default CategoryList

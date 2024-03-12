@@ -28,8 +28,8 @@ export const PostsList = () => {
         <h1 className="posts-list__header">All Posts</h1>
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
-            <Link to={`/post-details/${post.id}`} className="post__link">
-              <ul key={post.id} className="post__container">
+            <Link key={post.id} to={`/post-details/${post.id}`} className="post__link">
+              <ul className="post__container">
                 <div className="post__content-a">
                   <li className="post__title">{post.title}</li>
                   <li className="post__category">{post.category.label}</li>

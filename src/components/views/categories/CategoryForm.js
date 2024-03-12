@@ -2,26 +2,22 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createCategory } from "../../../managers/categoryManager"
 
-const CategoryForm = () => {
+export const CategoryForm = () => {
   const [categoryLabel, setCategoryLabel] = useState("")
   const navigate = useNavigate()
 
   const handleSaveCategory = async () => {
-    try {
-      const trimmedLabel = categoryLabel.trim()
+    const trimmedLabel = categoryLabel.trim()
 
-      if (trimmedLabel) {
-        const newCategory = {
-          label: trimmedLabel,
-        }
-
-        await createCategory(newCategory)
-        navigate("/category-list")
-      } else {
-        console.error("Category label is empty or contains only whitespaces")
+    if (trimmedLabel) {
+      const newCategory = {
+        label: trimmedLabel,
       }
-    } catch (error) {
-      console.error("Error saving category:", error)
+
+      await createCategory(newCategory)
+      navigate("/category-list")
+    } else {
+      window.alert("Category label is empty or contains only whitespaces")
     }
   }
 
@@ -34,5 +30,3 @@ const CategoryForm = () => {
     </div>
   )
 }
-
-export default CategoryForm
