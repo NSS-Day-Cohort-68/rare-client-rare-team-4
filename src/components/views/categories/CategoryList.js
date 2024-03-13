@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { deleteCategory, getAllCategories } from "../../../managers/categoryManager"
 import "./CategoryList.css"
 import { Button, ListGroup, ListGroupItem } from "reactstrap"
+import { sortAlphabetically } from "../../../helper"
 
 export const CategoryList = () => {
   const [allCategories, setAllCategories] = useState([])
@@ -10,7 +11,7 @@ export const CategoryList = () => {
 
   const getAndSetCategories = () => {
     getAllCategories().then((categoriesArr) => {
-      const sortedCategories = categoriesArr.sort((a, b) => a.label.localeCompare(b.label))
+      const sortedCategories = sortAlphabetically(categoriesArr, "label")
       setAllCategories(sortedCategories)
     })
   }
