@@ -1,0 +1,20 @@
+.category-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.category-list-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.category-list-left {
+  flex: 1;
+}
+
+.category-list-right {
+  max-width: 200px; /* Adjust as needed */
+}

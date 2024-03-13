@@ -1,4 +1,5 @@
-.post-details__container {
+.post-details__container,
+.post__container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -6,40 +7,58 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   font-family: "Lato", sans-serif;
+  margin-bottom: 30px;
+}
+.post__link {
+  text-decoration: none;
 }
 
-.post-details__title {
+.post__title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
   font-weight: bold;
 }
-.post-details__date,
-.post-details__username {
+.post__date,
+.post__username {
   font-size: 18px;
   color: #666;
   margin-bottom: 10px;
 }
-.post-details__username-name {
+.post__username-name {
   color: black;
 }
-.post-details__body {
+.post__body {
   font-size: 16px;
   line-height: 1.5;
   margin-top: 20px;
 }
-.post-details__img {
+.post__img {
   height: 40px;
   width: 60%;
   object-fit: cover;
 }
 
 .post-details__content-a,
-.post-details__content-b {
+.post-details__content-b,
+.post__content-a {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .post-details__content-a {
   margin-bottom: 10px;
+}
+
+.posts-list__header {
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.posts-list__message {
+  font-family: "Lato", sans-serif;
+  text-align: center;
 }
