@@ -41,8 +41,10 @@ export const ApplicationViews = () => {
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/category-list" element={<CategoryList />} />
         <Route path="/createCategory" element={<CategoryForm />} />
-        <Route path="/tags" element={<TagList />} />
-        <Route path="/tags/create" element={<CreateTagForm />} />
+        <Route path="/tags">
+          <Route index element={<TagList />} />
+          <Route path="create" element={<CreateTagForm />} />
+        </Route>
         <Route path="/posts" element={<PostsList />} />
         <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
         <Route path="/post-details">

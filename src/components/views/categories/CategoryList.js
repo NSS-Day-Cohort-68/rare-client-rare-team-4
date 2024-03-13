@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { deleteCategory, getAllCategories } from "../../../managers/categoryManager"
 import "./CategoryList.css"
 import { Button, ListGroup, ListGroupItem } from "reactstrap"
 
 export const CategoryList = () => {
   const [allCategories, setAllCategories] = useState([])
+  const navigate = useNavigate()
 
   const getAndSetCategories = () => {
     getAllCategories().then((categoriesArr) => {
@@ -27,11 +28,9 @@ export const CategoryList = () => {
 
   return (
     <div className="category-list__container">
-      <h1>Category List Page</h1>
-
       <div className="category-list__content">
         <div className="category-list__left">
-          <h2>Existing Categories:</h2>
+          <h2>Categories:</h2>
           <ListGroup className="category-list">
             {allCategories.map((category) => (
               <ListGroupItem key={category.id} className="category">
@@ -47,9 +46,11 @@ export const CategoryList = () => {
           </ListGroup>
         </div>
 
-        <Link to="/createCategory">
-          <Button color="primary">Create Category</Button>
-        </Link>
+        <div>
+          <Button onClick={() => navigate("/createCategory")} color="primary">
+            Create Category
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAllTags } from "../../../managers/tagManager.js"
 import { sortAlphabetically } from "../../../helper.js"
+import "./TagList.css"
+import { Button, ListGroup, ListGroupItem } from "reactstrap"
 
 export const TagList = () => {
   const [allTags, setAllTags] = useState([])
@@ -13,19 +15,27 @@ export const TagList = () => {
       setAllTags(alphabetizedTags)
     })
   }, [])
+
   return (
-    <div className="tags-container">
-      <h2> Tags</h2>
-      <button onClick={() => navigate("/tags/create")}>Create Tag</button>
-      <article className="tags">
-        {allTags.map((tag) => {
-          return (
-            <section className="tag" key={tag.id}>
-              <div className="tag-name">{tag.label}</div>
-            </section>
-          )
-        })}
-      </article>
+    <div className="tag-list__container">
+      <div className="tag-list__content">
+        <div className="tag-list__left">
+          <h2>Tags:</h2>
+          <ListGroup className="tag-list">
+            {allTags.map((tag) => (
+              <ListGroupItem key={tag.id} className="tag">
+                {tag.label}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        </div>
+
+        <div>
+          <Button onClick={() => navigate("/tags/create")} color="primary">
+            Create Tag
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }
