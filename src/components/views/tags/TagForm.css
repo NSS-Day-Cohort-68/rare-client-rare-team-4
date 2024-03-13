@@ -1,0 +1,25 @@
+.tag-form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "Lato", sans-serif;
+}
+
+.tag-form__content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.tag-form__left > * {
+  margin-bottom: 10px;
+}
+
+.tag-form__input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

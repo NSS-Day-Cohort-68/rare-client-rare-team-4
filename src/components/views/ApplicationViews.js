@@ -4,7 +4,7 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
-import { CreateTagForm } from "./tags/CreateTagForm.js"
+import { CreateTagForm } from "./tags/TagForm.js"
 import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./posts/UserPosts.js"
@@ -39,10 +39,14 @@ export const ApplicationViews = () => {
           </AuthorizedRoute>
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
-        <Route path="/category-list" element={<CategoryList />} />
-        <Route path="/createCategory" element={<CategoryForm />} />
-        <Route path="/tags" element={<TagList />} />
-        <Route path="/tags/create" element={<CreateTagForm />} />
+        <Route path="/categories">
+          <Route index element={<CategoryList />} />
+          <Route path="create" element={<CategoryForm />} />
+        </Route>
+        <Route path="/tags">
+          <Route index element={<TagList />} />
+          <Route path="create" element={<CreateTagForm />} />
+        </Route>
         <Route path="/posts" element={<PostsList />} />
         <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
         <Route path="/post-details">
