@@ -21,8 +21,6 @@ export const PostDetails = ({ loggedInUser }) => {
     }
   }, [navigate, post])
 
-  const handleAddComment = () => {}
-
   return (
     <div className="post-details__container">
       {!isEmptyObject(post) && post && (
@@ -61,11 +59,8 @@ export const PostDetails = ({ loggedInUser }) => {
           <p className="post__body">{post.content}</p>
         </>
       )}
-      <div>
-        <NewComments loggedInUser={loggedInUser} />
-      </div>
-      <div>
-        <button onClick={handleAddComment}>Add Comment</button>
+      <div className="newComments">
+        <NewComments loggedInUser={loggedInUser} postId={postId} />
       </div>
     </div>
   )

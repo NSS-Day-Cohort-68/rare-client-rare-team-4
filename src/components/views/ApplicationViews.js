@@ -58,7 +58,10 @@ export const ApplicationViews = () => {
             index
             element={<Navigate to={"/"} state={{ from: location }} replace />}
           />
-          <Route path=":postId" element={<PostDetails />} />
+          <Route
+            path=":postId"
+            element={<PostDetails loggedInUser={loggedInUser} />}
+          />
         </Route>
       </Route>
       <Route

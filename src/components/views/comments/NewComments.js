@@ -4,26 +4,24 @@ import { SaveComment } from "../../../managers/commentManager.js"
 
 export const NewComments = ({ loggedInUser, postId }) => {
   const navigate = useNavigate()
-  const [comment, setComment] = useState({
-    post_id: postId,
-    author_id: loggedInUser,
-    content: "",
-  })
-
-  const NewCommentCreated = (evt) => {
-    const { id, value } = evt.target
-    const parsedValue = id === "author_id" ? parseInt(value, 10) : value.trim()
-    setComment((prevComment) => ({
-      ...prevComment,
-      [id]: parsedValue,
-    }))
-  }
+  const [content, setContent] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    SaveComment(comment).then(() => {
-      navigate("/post-details")
-    })
+    const parsedContent = content.trim()
+
+    if (parsedContent !== "") {
+      SaveComment({
+        author_id: loggedInUser.id,
+        content,
+        post_id: postId,
+      }).then(() => {
+        setContent("")
+        navigate(`/post-details/${postId}`)
+      })
+    } else {
+      window.alert("Cannot be empty comment")
+    }
   }
 
   return (
@@ -33,9 +31,10 @@ export const NewComments = ({ loggedInUser, postId }) => {
         <fieldset>
           <div>
             <input
-              onChange={NewCommentCreated}
+              onChange={(e) => setContent(e.target.value)}
               type="text"
               id="content"
+              value={content}
               placeholder="What is your comment?"
               required
             />
