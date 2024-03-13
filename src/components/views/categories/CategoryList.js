@@ -48,7 +48,7 @@ export const CategoryList = () => {
         </div>
 
         <div>
-          <Button onClick={() => navigate("/createCategory")} color="primary">
+          <Button onClick={() => navigate("/categories/create")} color="primary">
             Create Category
           </Button>
         </div>

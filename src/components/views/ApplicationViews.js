@@ -39,8 +39,10 @@ export const ApplicationViews = () => {
           </AuthorizedRoute>
         }>
         <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
-        <Route path="/category-list" element={<CategoryList />} />
-        <Route path="/createCategory" element={<CategoryForm />} />
+        <Route path="/categories">
+          <Route index element={<CategoryList />} />
+          <Route path="create" element={<CategoryForm />} />
+        </Route>
         <Route path="/tags">
           <Route index element={<TagList />} />
           <Route path="create" element={<CreateTagForm />} />

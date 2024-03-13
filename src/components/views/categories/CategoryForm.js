@@ -15,7 +15,7 @@ export const CategoryForm = () => {
       }
 
       await createCategory(newCategory)
-      navigate("/category-list")
+      navigate("/categories")
     } else {
       window.alert("Category label is empty or contains only whitespaces")
     }
