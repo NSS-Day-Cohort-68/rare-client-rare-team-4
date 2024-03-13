@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getPostById } from "../../../managers/postManager"
+import { NewComments } from "../comments/NewComments.js"
 import { formatDate, isEmptyObject } from "../../../helper"
+
 import "./Post.css"
 
 export const PostDetails = ({ loggedInUser }) => {
@@ -35,7 +37,9 @@ export const PostDetails = ({ loggedInUser }) => {
               />
             )}
             <h1 className="post__title">{post.title}</h1>
-            {post.image_url && <img className="post__img" alt="header" src={post.image_url} />}
+            {post.image_url && (
+              <img className="post__img" alt="header" src={post.image_url} />
+            )}
           </div>
           <div className="post-details__content-b">
             <h3 className="post-details__date">
@@ -46,7 +50,10 @@ export const PostDetails = ({ loggedInUser }) => {
               <i className="post-details__username-name">
                 {post.user.username}
               </i>
-            <h3 className="post__date">Published on {formatDate(post.publication_date)}</h3>
+            </h3>
+            <h3 className="post__date">
+              Published on {formatDate(post.publication_date)}
+            </h3>
             <h3 className="post__username">
               By <i className="post__username-name">{post.user.username}</i>
             </h3>
@@ -55,7 +62,7 @@ export const PostDetails = ({ loggedInUser }) => {
         </>
       )}
       <div>
-        <NewComments loggedInUser={loggedInUser} postId={post.id} />
+        <NewComments loggedInUser={loggedInUser} />
       </div>
       <div>
         <button onClick={handleAddComment}>Add Comment</button>
