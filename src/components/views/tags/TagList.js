@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getAllTags } from "../../../managers/tagManager.js"
+import { deleteTag, getAllTags } from "../../../managers/tagManager.js"
 import { sortAlphabetically } from "../../../helper.js"
 import "./TagList.css"
 import { Button, ListGroup, ListGroupItem } from "reactstrap"
@@ -9,11 +9,22 @@ export const TagList = () => {
   const [allTags, setAllTags] = useState([])
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const getAndSetTags = () => {
     getAllTags().then((tagsArray) => {
-      const alphabetizedTags = sortAlphabetically(tagsArray, "label")
-      setAllTags(alphabetizedTags)
+      const sortedTags = sortAlphabetically(tagsArray, "label")
+      setAllTags(sortedTags)
     })
+  }
+
+  const handleDelete = (e, tag) => {
+    e.preventDefault()
+    if (window.confirm(`Are you sure you want to delete the "${tag.label}" tag?`)) {
+      deleteTag(tag).then(getAndSetTags)
+    }
+  }
+
+  useEffect(() => {
+    getAndSetTags()
   }, [])
 
   return (
@@ -24,7 +35,13 @@ export const TagList = () => {
           <ListGroup className="tag-list">
             {allTags.map((tag) => (
               <ListGroupItem key={tag.id} className="tag">
-                {tag.label}
+                <i
+                  className="fa-solid fa-trash tag__delete-btn"
+                  onClick={(e) => {
+                    handleDelete(e, tag)
+                  }}
+                />
+                &emsp;{tag.label}
               </ListGroupItem>
             ))}
           </ListGroup>
