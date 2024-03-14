@@ -42,6 +42,10 @@ export const ApplicationViews = () => {
         <Route path="/categories">
           <Route index element={<CategoryList />} />
           <Route path="create" element={<CategoryForm />} />
+          <Route path="edit">
+            <Route index element={<Navigate to={"/categories"} state={{ from: location }} replace />} />
+            <Route path=":categoryId" element={<CategoryForm isEditing={true} />} />
+          </Route>
         </Route>
         <Route path="/tags">
           <Route index element={<TagList />} />

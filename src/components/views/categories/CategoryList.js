@@ -36,6 +36,11 @@ export const CategoryList = () => {
             {allCategories.map((category) => (
               <ListGroupItem key={category.id} className="category">
                 <i
+                  className="fa-solid fa-gear category__edit-btn"
+                  onClick={() => navigate(`/categories/edit/${category.id}`)}
+                />
+                &ensp;
+                <i
                   className="fa-solid fa-trash category__delete-btn"
                   onClick={(e) => {
                     handleDelete(e, category)
