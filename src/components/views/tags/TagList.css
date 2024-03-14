@@ -1,4 +1,4 @@
-.category-list__container {
+.tag-list__container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,21 +6,21 @@
   font-family: "Lato", sans-serif;
 }
 
-.category-list__content {
+.tag-list__content {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.category-list__content > * {
+.tag-list__content > * {
   max-width: 600px;
 }
 
-.category-list__left > * {
+.tag-list__left > * {
   margin-bottom: 10px;
 }
 
-.category__delete-btn:hover {
+.tag__delete-btn:hover {
   color: red;
   cursor: pointer;
 }

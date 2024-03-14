@@ -33,7 +33,7 @@ export const NavBar = ({ loggedInUser, setLoggedInUser }) => {
       </li>
 
       <li className="navbar-item">
-        <Link to="/category-list" className="navbar-link" id={url === "/category-list" ? "selected" : ""}>
+        <Link to="/categories" className="navbar-link" id={url === "/categories" ? "selected" : ""}>
           Category Manager
         </Link>
       </li>
