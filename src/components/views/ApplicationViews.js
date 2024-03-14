@@ -46,11 +46,14 @@ export const ApplicationViews = () => {
       >
         <Route index element={<>Rare - Home Page</>} />{" "}
         {/* home page will go here */}
-        <Route path="/category-list" element={<CategoryList />} />
-        <Route path="/createCategory" element={<CategoryForm />} />
-        <Route path="/tags" element={<TagList />} />
-        <Route path="/tags/create" element={<CreateTagForm />} />
+        <Route path="/categories">
+          <Route index element={<CategoryList />} />
+          <Route path="create" element={<CategoryForm />} />
+        </Route>
         <Route path="/posts" element={<PostsList />} />
+        <Route path="/tags">
+          <Route index element={<TagList />} />
+        </Route>
         <Route
           path="/userPosts"
           element={<UserPostList loggedInUser={loggedInUser} />}
@@ -101,10 +104,10 @@ export const ApplicationViews = () => {
         }
       />
 
-      {/* <Route
+      <Route
         path="*"
         element={<Navigate to={"/"} state={{ from: location }} replace />}
-      /> */}
+      />
     </Routes>
   )
 }
