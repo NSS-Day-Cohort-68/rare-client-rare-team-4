@@ -7,3 +7,7 @@ export const getAllTags = async () => {
 export const createTag = async (tag) => {
   return await fetch(`${apiUrl}/tags`, fetchOptions("POST", tag)).then((res) => res.json())
 }
+
+export const deleteTag = async (tag) => {
+  return await fetch(`${apiUrl}/tags/${tag.id}`, fetchOptions("DELETE")).then((res) => res.json())
+}
