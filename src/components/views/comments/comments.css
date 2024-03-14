@@ -1,0 +1,21 @@
+.viewCommentsTitle {
+  display: flex;
+  justify-self: center;
+  justify-content: space-around;
+  font-size: x-large;
+}
+
+.comments {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 10px;
+  padding: 5px;
+  width: 250px;
+}
+
+.commentContent {
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 100%;
+}

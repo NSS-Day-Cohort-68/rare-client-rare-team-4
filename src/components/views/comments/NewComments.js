@@ -1,10 +1,19 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { SaveComment } from "../../../managers/commentManager.js"
 
-export const NewComments = ({ loggedInUser, postId }) => {
+export const NewComments = ({ loggedInUser }) => {
   const navigate = useNavigate()
   const [content, setContent] = useState("")
+  const { postId } = useParams()
+
+  const today = () => {
+    const thisDay = new Date()
+    const month = thisDay.getMonth() + 1
+    const year = thisDay.getFullYear()
+    const date = thisDay.getDate()
+    return `${month}/${date}/${year}`
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -15,9 +24,10 @@ export const NewComments = ({ loggedInUser, postId }) => {
         author_id: loggedInUser.id,
         content,
         post_id: postId,
+        date: today(),
       }).then(() => {
         setContent("")
-        navigate(`/post-details/${postId}`)
+        navigate(`/${postId}/view-comments`)
       })
     } else {
       window.alert("Cannot be empty comment")

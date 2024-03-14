@@ -7,3 +7,7 @@ export const SaveComment = (comment) => {
     body: JSON.stringify(comment),
   })
 }
+
+export const getAllComments = () => {
+  return fetch(`http://localhost:8000/comments`).then((res) => res.json())
+}

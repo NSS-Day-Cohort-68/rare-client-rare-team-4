@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useNavigate, useParams } from "react-router-dom"
 import { getPostById } from "../../../managers/postManager"
-import { NewComments } from "../comments/NewComments.js"
 import { formatDate, isEmptyObject } from "../../../helper"
-
 import "./Post.css"
 
 export const PostDetails = ({ loggedInUser }) => {
@@ -59,8 +58,14 @@ export const PostDetails = ({ loggedInUser }) => {
           <p className="post__body">{post.content}</p>
         </>
       )}
-      <div className="newComments">
-        <NewComments loggedInUser={loggedInUser} postId={postId} />
+
+      <div className="Comments">
+        <Link to={`/${postId}/view-comments`}>
+          <button>View Comments</button>
+        </Link>
+        <Link to={`/${postId}/add-comment`}>
+          <button>Add Comment</button>
+        </Link>
       </div>
     </div>
   )

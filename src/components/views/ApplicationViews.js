@@ -11,6 +11,8 @@ import { UserPostList } from "./posts/UserPosts.js"
 import CategoryList from "./categories/CategoryList.js"
 import CategoryForm from "./categories/CategoryForm.js"
 import { PostsList } from "./posts/PostsList.js"
+import { NewComments } from "./comments/NewComments.js"
+import { ViewComments } from "./comments/ViewComments.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -63,7 +65,16 @@ export const ApplicationViews = () => {
             element={<PostDetails loggedInUser={loggedInUser} />}
           />
         </Route>
+        <Route
+          path=":postId/add-comment"
+          element={<NewComments loggedInUser={loggedInUser} />}
+        />
+        <Route
+          path=":postId/view-comments"
+          element={<ViewComments loggedInUser={loggedInUser} />}
+        />
       </Route>
+
       <Route
         path="/login"
         element={
@@ -90,10 +101,10 @@ export const ApplicationViews = () => {
         }
       />
 
-      <Route
+      {/* <Route
         path="*"
         element={<Navigate to={"/"} state={{ from: location }} replace />}
-      />
+      /> */}
     </Routes>
   )
 }
