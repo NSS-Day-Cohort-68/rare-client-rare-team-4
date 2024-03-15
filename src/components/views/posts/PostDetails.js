@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useNavigate, useParams } from "react-router-dom"
 import { getPostById } from "../../../managers/postManager"
 import { formatDate, isEmptyObject } from "../../../helper"
 import "./Post.css"
 
-export const PostDetails = () => {
+export const PostDetails = ({ loggedInUser }) => {
   const [post, setPost] = useState(null)
   const { postId } = useParams()
   const navigate = useNavigate()
@@ -25,10 +26,14 @@ export const PostDetails = () => {
         <>
           <div className="post-details__content-a">
             <h1 className="post__title">{post.title}</h1>
-            {post.image_url && <img className="post__img" alt="header" src={post.image_url} />}
+            {post.image_url && (
+              <img className="post__img" alt="header" src={post.image_url} />
+            )}
           </div>
           <div className="post-details__content-b">
-            <h3 className="post__date">Published on {formatDate(post.publication_date)}</h3>
+            <h3 className="post__date">
+              Published on {formatDate(post.publication_date)}
+            </h3>
             <h3 className="post__username">
               By <i className="post__username-name">{post.user.username}</i>
             </h3>
@@ -36,6 +41,15 @@ export const PostDetails = () => {
           <p className="post__body">{post.content}</p>
         </>
       )}
+
+      <div className="Comments">
+        <Link to={`/${postId}/view-comments`}>
+          <button>View Comments</button>
+        </Link>
+        <Link to={`/${postId}/add-comment`}>
+          <button>Add Comment</button>
+        </Link>
+      </div>
     </div>
   )
 }
