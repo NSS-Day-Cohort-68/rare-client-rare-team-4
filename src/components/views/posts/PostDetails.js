@@ -31,10 +31,6 @@ export const PostDetails = ({ loggedInUser }) => {
             )}
           </div>
           <div className="post-details__content-b">
-            <h3 className="post-details__date">
-              Published on {formatDate(post.publication_date)}
-            </h3>
-
             <h3 className="post__date">
               Published on {formatDate(post.publication_date)}
             </h3>
