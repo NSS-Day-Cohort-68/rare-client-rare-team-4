@@ -14,15 +14,11 @@ export const CategoryForm = ({ isEditing }) => {
     const trimmedLabel = categoryLabel.trim()
 
     if (!!trimmedLabel) {
-      const newCategory = {
-        label: trimmedLabel,
-      }
-
       if (!isEditing) {
-        await createCategory(newCategory)
+        await createCategory({ label: trimmedLabel })
         navigate("/categories")
       } else {
-        await updateCategory(newCategory)
+        await updateCategory({ label: trimmedLabel, id: parseInt(categoryId) })
         navigate("/categories")
       }
     } else {
