@@ -4,7 +4,7 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
-import { CreateTagForm } from "./tags/TagForm.js"
+import { TagForm } from "./tags/TagForm.js"
 import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./posts/UserPosts.js"
@@ -49,7 +49,11 @@ export const ApplicationViews = () => {
         </Route>
         <Route path="/tags">
           <Route index element={<TagList />} />
-          <Route path="create" element={<CreateTagForm />} />
+          <Route path="create" element={<TagForm />} />
+          <Route path="edit">
+            <Route index element={<Navigate to={"/tags"} state={{ from: location }} replace />} />
+            <Route path=":tagId" element={<TagForm isEditing={true} />} />
+          </Route>
         </Route>
         <Route path="/posts" element={<PostsList />} />
         <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />

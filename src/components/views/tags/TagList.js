@@ -35,6 +35,8 @@ export const TagList = () => {
           <ListGroup className="tag-list">
             {allTags.map((tag) => (
               <ListGroupItem key={tag.id} className="tag">
+                <i className="fa-solid fa-gear tag__edit-btn" onClick={() => navigate(`/tags/edit/${tag.id}`)} />
+                &ensp;
                 <i
                   className="fa-solid fa-trash tag__delete-btn"
                   onClick={(e) => {

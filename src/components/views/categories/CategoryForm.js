@@ -16,18 +16,18 @@ export const CategoryForm = ({ isEditing }) => {
     if (!!trimmedLabel) {
       if (!isEditing) {
         await createCategory({ label: trimmedLabel })
-        navigate("/categories")
       } else {
         await updateCategory({ label: trimmedLabel, id: parseInt(categoryId) })
-        navigate("/categories")
       }
+
+      navigate("/categories")
     } else {
       window.alert("Category label is empty or contains only whitespaces")
     }
   }
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEditing && !!categoryId) {
       getCategory(parseInt(categoryId)).then((category) => {
         setCategoryLabel(category.label)
         setPlaceholder(category.label)
