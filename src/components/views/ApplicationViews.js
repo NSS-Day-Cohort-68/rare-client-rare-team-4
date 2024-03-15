@@ -4,7 +4,6 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
-import { CreateTagForm } from "./tags/TagForm.js"
 import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./posts/UserPosts.js"
@@ -13,6 +12,7 @@ import { CategoryForm } from "./categories/CategoryForm.js"
 import { PostsList } from "./posts/PostsList.js"
 import { NewComments } from "./comments/NewComments.js"
 import { ViewComments } from "./comments/ViewComments.js"
+import { CreateTagForm } from "./tags/TagForm.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -53,6 +53,7 @@ export const ApplicationViews = () => {
         <Route path="/posts" element={<PostsList />} />
         <Route path="/tags">
           <Route index element={<TagList />} />
+          <Route path="create" element={<CreateTagForm />} />
         </Route>
         <Route
           path="/userPosts"
