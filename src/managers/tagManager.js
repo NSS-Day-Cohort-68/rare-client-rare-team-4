@@ -11,3 +11,11 @@ export const createTag = async (tag) => {
 export const deleteTag = async (tag) => {
   return await fetch(`${apiUrl}/tags/${tag.id}`, fetchOptions("DELETE")).then((res) => res.json())
 }
+
+export const getTag = async (tagId) => {
+  return await fetch(`${apiUrl}/tags/${tagId}`).then((res) => res.json())
+}
+
+export const updateTag = async (tag) => {
+  return await fetch(`${apiUrl}/tags/${tag.id}`, fetchOptions("PUT", tag)).then((res) => res.json())
+}

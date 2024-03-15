@@ -21,6 +21,10 @@
 }
 
 .tag__delete-btn:hover {
-  color: red;
+  color: rgb(255, 67, 67);
+  cursor: pointer;
+}
+.tag__edit-btn:hover {
+  color: rgb(255, 178, 35);
   cursor: pointer;
 }

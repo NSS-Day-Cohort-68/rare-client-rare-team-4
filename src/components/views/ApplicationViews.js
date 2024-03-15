@@ -4,6 +4,7 @@ import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { AuthorizedRoute } from "../auth/AuthorizedRoute"
 import { NavBar } from "../nav/NavBar"
+import { TagForm } from "./tags/TagForm.js"
 import { TagList } from "./tags/TagList.js"
 import { PostDetails } from "./posts/PostDetails"
 import { UserPostList } from "./posts/UserPosts.js"
@@ -12,7 +13,6 @@ import { CategoryForm } from "./categories/CategoryForm.js"
 import { PostsList } from "./posts/PostsList.js"
 import { NewComments } from "./comments/NewComments.js"
 import { ViewComments } from "./comments/ViewComments.js"
-import { CreateTagForm } from "./tags/TagForm.js"
 
 export const ApplicationViews = () => {
   const [loggedInUser, setLoggedInUser] = useState(null)
@@ -36,16 +36,11 @@ export const ApplicationViews = () => {
         path="/"
         element={
           <AuthorizedRoute url={location.pathname}>
-            <NavBar
-              loggedInUser={loggedInUser}
-              setLoggedInUser={setLoggedInUser}
-            />
+            <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
             <Outlet />
           </AuthorizedRoute>
-        }
-      >
-        <Route index element={<>Rare - Home Page</>} />{" "}
-        {/* home page will go here */}
+        }>
+        <Route index element={<>Rare - Home Page</>} /> {/* home page will go here */}
         <Route path="/categories">
           <Route index element={<CategoryList />} />
           <Route path="create" element={<CategoryForm />} />
@@ -57,30 +52,19 @@ export const ApplicationViews = () => {
         <Route path="/posts" element={<PostsList />} />
         <Route path="/tags">
           <Route index element={<TagList />} />
-          <Route path="create" element={<CreateTagForm />} />
+          <Route path="create" element={<TagForm />} />
+          <Route path="edit">
+            <Route index element={<Navigate to={"/tags"} state={{ from: location }} replace />} />
+            <Route path=":tagId" element={<TagForm isEditing={true} />} />
+          </Route>
         </Route>
-        <Route
-          path="/userPosts"
-          element={<UserPostList loggedInUser={loggedInUser} />}
-        />
+        <Route path="/userPosts" element={<UserPostList loggedInUser={loggedInUser} />} />
         <Route path="/post-details">
-          <Route
-            index
-            element={<Navigate to={"/"} state={{ from: location }} replace />}
-          />
-          <Route
-            path=":postId"
-            element={<PostDetails loggedInUser={loggedInUser} />}
-          />
+          <Route index element={<Navigate to={"/"} state={{ from: location }} replace />} />
+          <Route path=":postId" element={<PostDetails loggedInUser={loggedInUser} />} />
         </Route>
-        <Route
-          path=":postId/add-comment"
-          element={<NewComments loggedInUser={loggedInUser} />}
-        />
-        <Route
-          path=":postId/view-comments"
-          element={<ViewComments loggedInUser={loggedInUser} />}
-        />
+        <Route path=":postId/add-comment" element={<NewComments loggedInUser={loggedInUser} />} />
+        <Route path=":postId/view-comments" element={<ViewComments loggedInUser={loggedInUser} />} />
       </Route>
 
       <Route
@@ -109,10 +93,7 @@ export const ApplicationViews = () => {
         }
       />
 
-      <Route
-        path="*"
-        element={<Navigate to={"/"} state={{ from: location }} replace />}
-      />
+      <Route path="*" element={<Navigate to={"/"} state={{ from: location }} replace />} />
     </Routes>
   )
 }
